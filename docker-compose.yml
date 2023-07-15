@@ -1,0 +1,17 @@
+version: "3"
+services:
+  frontend:
+    build:
+      context: ./frontend # Path to the frontend directory
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000 # Map the container's port to the host's port
+    depends_on:
+      - backend # Specify the dependency on the backend service
+
+  backend:
+    build:
+      context: ./backend # Path to the backend directory
+      dockerfile: Dockerfile
+    ports:
+      - 4000:4000 # Map the container's port to the host's port
