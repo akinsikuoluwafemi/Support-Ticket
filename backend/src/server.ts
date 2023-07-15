@@ -29,7 +29,7 @@ const start = async () => {
     await new Promise<void>((resolve, reject) => {
       app.listen(4000, resolve).on('error', reject);
     });
-    console.log(`Server started at http://localhost:3001`);
+    console.log(`Server started at http://localhost:4000`);
   } catch (error: unknown) {
     console.log('Failed to connect to MongoDB');
     console.log(error);

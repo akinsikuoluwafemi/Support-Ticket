@@ -41,6 +41,7 @@ Run `npm run build`
 6: React-Calender: Calender UI to pick deadline. <br/>
 7: Yup and hookform/resolvers: To validate input fields. <br/>
 8: Jest, react-testing library: For testing
+9: Faker: For generating random client name, issue etc.
 
 <br/>
 

@@ -54,7 +54,6 @@ describe('Ticket API', () => {
 
   it('should edit an existing ticket', async () => {
     const ticket: Ticket | null = await Ticket.findOne({});
-    console.log(ticket);
 
     const updatedTicket = {
       client: ticket?.client,
