@@ -10,6 +10,8 @@
   cd backend && npm install && npm run start
 ```
 
+Also Include the .env file in the root backend folder. I have provided it.
+
 ### Testing the app
 
 Run `npm run test`
