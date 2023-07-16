@@ -62,14 +62,6 @@ const TicketItem: FC<TicketItemProps> = ({
 
     await dispatch(getAllTicket() as any);
   };
-  // get today using moment
-  const getStatus = () => {
-    if (status === 'open') {
-      setChecked(true);
-    } else {
-      setChecked(false);
-    }
-  };
 
   const checkStatusColor = () => {
     if (status === 'open' && today > deadline) {
@@ -82,8 +74,12 @@ const TicketItem: FC<TicketItemProps> = ({
   };
 
   useEffect(() => {
-    getStatus();
-  }, []);
+    if (status === 'open') {
+      setChecked(true);
+    } else {
+      setChecked(false);
+    }
+  }, [status]);
 
   const renderColor = () => {
     if (checkStatusColor() === 'green') {

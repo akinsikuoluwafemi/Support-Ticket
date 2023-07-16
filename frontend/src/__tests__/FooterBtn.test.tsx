@@ -6,13 +6,19 @@ import FooterBtn from '../components/FooterBtn';
 import Wrapper from '../mockStore';
 
 describe('Footer Button', () => {
-  render(<FooterBtn />, { wrapper: Wrapper });
+  const generateRandomTicket = jest.fn();
+
+  render(<FooterBtn generateRandomTicket={generateRandomTicket} />, {
+    wrapper: Wrapper,
+  });
 
   const showFormBtn = screen.getByTestId('show-form');
 
-  it('should render form after button is clicked and fire change event as user types', async () => {
+  it('should render a form after button is clicked and fire change event as user types in', async () => {
     userEvent.click(showFormBtn);
+
     const createFormElement = await screen.findByTestId('form');
+
     expect(createFormElement).toBeInTheDocument();
 
     const client = await screen.findByLabelText('Client');

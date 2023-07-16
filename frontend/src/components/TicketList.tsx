@@ -1,4 +1,3 @@
-import React from 'react';
 import { ITicket } from '../types/globalTypes';
 import TicketItem from './TicketItem';
 

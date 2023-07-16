@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Stack, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -7,10 +7,13 @@ import { getAllTicket, selectAllTickets } from './slices/ticketSlice';
 import TicketList from './components/TicketList';
 import FooterBtn from './components/FooterBtn';
 import './App.css';
+import useRandomTicket from './hooks/useRandomTicket';
 
 function App() {
   const dispatch = useDispatch();
   const tickets = useSelector(selectAllTickets);
+
+  const { generateRandomTicket } = useRandomTicket();
 
   const dispatchAllTickets = useCallback(
     () => dispatch(getAllTicket() as any),
@@ -59,7 +62,7 @@ function App() {
           <TicketList tickets={tickets} />
         </Box>
 
-        <FooterBtn />
+        <FooterBtn generateRandomTicket={generateRandomTicket} />
       </Box>
     </>
   );

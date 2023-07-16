@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { Box, Button, TextField, Typography } from '@mui/material';
@@ -6,7 +6,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Calendar from 'react-calendar';
 import moment from 'moment';
 import { Stack } from '@mui/system';
-import { faker } from '@faker-js/faker';
 import { useSnackbar } from 'notistack';
 
 import Modal from '@mui/material/Modal';
@@ -16,9 +15,14 @@ import {
   setTicketLoading,
 } from '../slices/ticketSlice';
 import { validationSchema } from '../utils/validators';
-import { getRandDate } from '../utils/convert-date';
 
-const FooterBtn = () => {
+import { debounce } from '../utils/debounce';
+
+const FooterBtn = ({
+  generateRandomTicket,
+}: {
+  generateRandomTicket: () => Promise<void>;
+}) => {
   const {
     register,
     handleSubmit,
@@ -72,39 +76,6 @@ const FooterBtn = () => {
     }
   };
 
-  const generateRandomTicket = async () => {
-    try {
-      const randomDate = getRandDate();
-
-      const ticket = {
-        client: faker.company.name().split(',')[0],
-        issue: faker.word.words({ count: { min: 5, max: 12 } }),
-        date: randomDate,
-      };
-      dispatch(setTicketLoading(true) as any);
-      const result = ticket && (await dispatch(createTicket(ticket) as any));
-
-      if (result.payload.success) {
-        enqueueSnackbar(result.payload.message, { variant: 'success' });
-      }
-      await dispatch(getAllTicket() as any);
-    } catch (err: any) {
-      console.log(err);
-      enqueueSnackbar(err.message, { variant: 'error' });
-    } finally {
-      dispatch(setTicketLoading(false) as any);
-    }
-  };
-
-  // debounce function
-  function debounce(func: () => void, delay: number) {
-    let timeoutId: NodeJS.Timeout;
-    return function () {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(func, delay); //cal the func after the delay
-    };
-  }
-
   let debouncedGenerateRandTicket = debounce(generateRandomTicket, 1000);
 
   return (
@@ -118,7 +89,11 @@ const FooterBtn = () => {
       direction="row"
       spacing={2}
     >
-      <Button onClick={debouncedGenerateRandTicket} variant="contained">
+      <Button
+        data-testid="rand-ticket-btn"
+        onClick={debouncedGenerateRandTicket}
+        variant="contained"
+      >
         Create Randomly &nbsp; &nbsp;{' '}
         <span style={{ fontSize: '20px' }}>&gt;</span>
       </Button>
