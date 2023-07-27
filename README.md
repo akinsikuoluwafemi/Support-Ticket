@@ -44,8 +44,4 @@ Your task is to build a Support Ticket System application that allows users to c
 
    ![1688398030985](image/README/1688398030985.png)
 
-**Deliverables:**
 
-- Provide a GitHub repository with your code.
-- Include a README file with instructions on how to set up and run the application.
-- You can also include any additional documentation or comments to explain your design choices or assumptions.
