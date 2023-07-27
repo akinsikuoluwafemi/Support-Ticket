@@ -10,7 +10,10 @@
   cd backend && npm install && npm run start
 ```
 
-Also Include the .env file in the root backend folder. I have provided it.
+Also Include the .env file in the root backend folder, like so.
+
+MONGO_USERNAME=yourusername
+MONGO_PASSWORD=yourpassword
 
 ### Testing the app
 
