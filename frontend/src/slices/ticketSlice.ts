@@ -4,7 +4,10 @@ import axios from 'axios';
 import { RootState } from '../store';
 import { ITicket } from '../types/globalTypes';
 
-const base_url = 'http://localhost:4000';
+const base_url =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:4000'
+    : 'https://support-ticket-chi.vercel.app';
 
 interface TicketDataState {
   allTicket: ITicket[];
