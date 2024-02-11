@@ -1,6 +1,6 @@
-# **Challenge: Building a Support Ticket System**
+# **Building a Support Ticket System**
 
-Your task is to build a Support Ticket System application that allows users to create Support Tickets. The application should consist of a backend API and a frontend interface.
+Build a Support Ticket System application that allows users to create Support Tickets. The application should consist of a backend API and a frontend interface.
 
 **Requirements:**
 
